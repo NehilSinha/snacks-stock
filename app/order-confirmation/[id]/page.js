@@ -144,7 +144,7 @@ export default function OrderConfirmation() {
 
         <div className="mt-6 text-center space-y-3">
           <p className="text-gray-400 text-sm">
-            We'll update you as your order progresses. Expected delivery time: 15-30 minutes.
+            We&apos;ll update you as your order progresses. Expected delivery time: 15-30 minutes.
           </p>
           <div className="space-x-3">
             <Link
