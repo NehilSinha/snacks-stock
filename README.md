@@ -1,36 +1,124 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Snacks Store - Hostel Delivery App
 
-## Getting Started
+A simple, responsive snacks ordering website built with Next.js and MongoDB. Designed primarily for mobile use with a clean black theme.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+### Customer Features
+- Browse available snacks with images and descriptions
+- Add items to cart with quantity selection
+- Hostel and room number selection (defaults to Himalaya)
+- Simple checkout process
+- Responsive design optimized for mobile
+
+### Admin Features
+- PIN-based admin authentication (default PIN: 1234)
+- View and manage orders (pending/completed status)
+- Add new products to the store
+- View current product inventory
+
+## Setup Instructions
+
+### Prerequisites
+- Node.js (v18 or higher)
+- MongoDB (local installation or MongoDB Atlas)
+
+### Installation
+
+1. Clone or download the project
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file in the root directory:
+   ```
+   MONGODB_URI=mongodb://localhost:27017/snacks-store
+   ADMIN_PIN=1234
+   ```
+
+4. Start MongoDB service (if using local installation)
+
+5. Seed the database with sample products:
+   ```bash
+   npm run seed
+   ```
+
+6. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+7. Open http://localhost:3000 (or the port shown in terminal)
+
+## Usage
+
+### For Customers
+1. Visit the main page to browse snacks
+2. Click "Add to Cart" on items you want
+3. Go to Cart to review items and adjust quantities
+4. Select your hostel (default: Himalaya) and enter room number
+5. Click "Place Order" to complete purchase
+
+### For Admin
+1. Click "Admin" link at bottom right of main page
+2. Enter PIN (default: 1234)
+3. View orders and mark them as completed
+4. Add new products with images, prices, and descriptions
+
+## File Structure
+
+```
+├── app/
+│   ├── api/
+│   │   ├── admin/auth/       # Admin authentication
+│   │   ├── orders/           # Order management
+│   │   └── products/         # Product management
+│   ├── admin/                # Admin pages
+│   ├── cart/                 # Shopping cart page
+│   ├── globals.css           # Global styles (black theme)
+│   ├── layout.js             # Root layout
+│   └── page.js               # Main products page
+├── lib/
+│   └── mongodb.js            # Database connection
+├── models/
+│   ├── Product.js            # Product schema
+│   └── Order.js              # Order schema
+├── scripts/
+│   └── seedProducts.js       # Sample data seeder
+└── .env.local                # Environment variables
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Default Settings
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Hostel Options**: Himalaya (default), Kailash, Everest, Annapurna
+- **Admin PIN**: 1234 (change in .env.local)
+- **Theme**: Black background with white text
+- **Database**: Local MongoDB on port 27017
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Customization
 
-## Learn More
+- **Change hostel options**: Edit the select options in `app/cart/page.js`
+- **Modify theme**: Update colors in `app/globals.css`
+- **Change admin PIN**: Update `ADMIN_PIN` in `.env.local`
+- **Add more product fields**: Modify the Product schema in `models/Product.js`
 
-To learn more about Next.js, take a look at the following resources:
+## Production Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Set up MongoDB Atlas or production MongoDB instance
+2. Update `MONGODB_URI` in environment variables
+3. Build the application: `npm run build`
+4. Start production server: `npm start`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Sample Products Included
 
-## Deploy on Vercel
+The seeder script includes 6 sample products:
+- Chocolate Cookies (₹25)
+- Potato Chips (₹20)  
+- Energy Bar (₹35)
+- Instant Noodles (₹15)
+- Fruit Juice (₹30)
+- Candy Pack (₹12, out of stock)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All products use sample images from Unsplash.
